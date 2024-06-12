@@ -38,13 +38,10 @@ export const sendMessage = async (req, res) => {
 };
 
 export const getMessages = async (req, res) => {
-  console.log("Req", req.user._id);
+  
   try {
     const { id: userToChatId } = req.params;
     const senderId = req?.user?._id;
-
-    console.log("LoggedIn User ID", senderId);
-    console.log("Receiver User ID", userToChatId);
 
     const conversation = await Conversation.findOne({
       participents: { $all: [senderId, userToChatId] },

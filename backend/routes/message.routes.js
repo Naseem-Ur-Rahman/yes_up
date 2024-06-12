@@ -7,6 +7,6 @@ const router = express.Router();
 router.get("/:id",protectRoute ,getMessages);
 router.post("/send/:id",protectRoute ,sendMessage);
 // router.post("/login", login);
-// router.post("/logout", logout);
+// router.post("/logout", logout); 
 
 export default router;

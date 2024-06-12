@@ -1,15 +1,24 @@
 import React from "react";
 import ConversationUser from "./ConversationUser";
+import useGetConversationUsers from "../../../hooks/useGetConversationUsers";
 
 const Conversations = () => {
+  const { loading, conversationUsers } = useGetConversationUsers();
+
   return (
     <div className="py-2 flex flex-col overflow-auto">
-      <ConversationUser />
-      <ConversationUser />
-      <ConversationUser />
-      <ConversationUser />
-      <ConversationUser />
-      <ConversationUser />
+      {loading ? (
+        <span className="loading loading-spinner mx-auto"></span>
+      ) : (
+        conversationUsers &&
+        conversationUsers.map((users, index) => (
+          <ConversationUser
+            key={users?._id}
+            conversations={users}
+            lastindex={index === users.length - 1}
+          />
+        ))
+      )}
     </div>
   );
 };
